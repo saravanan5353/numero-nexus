@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blade MCP: Technical Architecture Deep Dive</title>
+    <title>Figma to AI Code: Technical Process</title>
     <style>
         * {
             margin: 0;
@@ -86,7 +86,7 @@
             border: 2px solid rgba(255,255,255,0.3);
             border-radius: 15px;
             padding: 20px;
-            min-width: 180px;
+            min-width: 200px;
             text-align: center;
             backdrop-filter: blur(10px);
         }
@@ -123,20 +123,6 @@
             padding: 2px 6px;
             border-radius: 4px;
             color: #ffd700;
-        }
-        
-        .architecture-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .component-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
         }
         
         .navigation {
@@ -179,61 +165,11 @@
             font-size: 1.1rem;
         }
         
-        .context-steps {
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            padding: 25px;
-            margin: 20px 0;
-            text-align: left;
-            width: 90%;
-        }
-        
-        .context-steps h4 {
-            color: #ffd700;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-        
-        .context-steps ol {
-            margin-left: 20px;
-        }
-        
-        .context-steps li {
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .tool-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .tool-card h4 {
-            color: #87ceeb;
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-        }
-        
-        .large-text {
-            font-size: 1.5rem;
-            text-align: center;
-            margin: 20px 0;
-        }
-        
         .vertical-flow {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             margin: 20px 0;
         }
         
@@ -248,6 +184,64 @@
             padding: 25px;
             margin: 20px 0;
             width: 85%;
+        }
+        
+        .context-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .context-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .context-card h4 {
+            color: #87ceeb;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .figma-visual {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid #ff6b6b;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .ai-visual {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid #4ecdc4;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .step-number {
+            background: #ffd700;
+            color: #1e3c72;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 0 auto 10px;
+        }
+        
+        .large-text {
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 20px 0;
         }
         
         .json-display {
@@ -269,347 +263,226 @@
         .json-string {
             color: #a5d6ff;
         }
-        
-        .json-number {
-            color: #79c0ff;
-        }
     </style>
 </head>
 <body>
     <div class="presentation-container">
         <div class="slide-counter">
-            <span id="current-slide">1</span> / <span id="total-slides">10</span>
+            <span id="current-slide">1</span> / <span id="total-slides">6</span>
         </div>
         
-        <!-- Slide 1: Title -->
+        <!-- Slide 1: What is MCP -->
         <div class="slide active">
-            <h1>Blade MCP</h1>
-            <h2>Technical Architecture Deep Dive</h2>
-            <div class="visual-container">
-                <div class="process-box">
-                    <h3>🔧 MCP Protocol</h3>
-                    <p>Model Context Protocol</p>
-                </div>
-                <div class="arrow">↔</div>
-                <div class="process-box">
-                    <h3>🛠️ Blade Design System</h3>
-                    <p>Component Library</p>
-                </div>
-            </div>
-            <p class="large-text">How Blade integrates with Model Context Protocol for AI-powered development</p>
-        </div>
-        
-        <!-- Slide 2: What is MCP -->
-        <div class="slide">
-            <h2>Model Context Protocol (MCP)</h2>
+            <h1>Model Context Protocol (MCP)</h1>
             <div class="protocol-box">
-                <h3>📡 Standard Protocol Definition</h3>
-                <p>MCP is a standard protocol for AI models to connect to different data sources and tools</p>
-                <p class="highlight">Think of it as a USB-C port for AI - universal connection standard</p>
+                <h3>📡 What is MCP?</h3>
+                <p>MCP is a <span class="highlight">standard protocol</span> for AI models to connect to different data sources and tools</p>
+                <p class="large-text">Think of it as a <span class="highlight">USB-C port for AI</span></p>
             </div>
             <div class="flow-diagram">
                 <div class="process-box">
                     <h4>🖥️ MCP Client</h4>
-                    <p>Cursor IDE, Claude Desktop</p>
+                    <p>Cursor IDE</p>
+                    <p>Claude Desktop</p>
                 </div>
                 <div class="arrow">↔</div>
                 <div class="process-box">
                     <h4>🔧 MCP Server</h4>
-                    <p>Blade MCP, Custom Tools</p>
+                    <p>Blade MCP</p>
+                    <p>Custom Tools</p>
                 </div>
             </div>
             <div class="code-block">
                 <span class="highlight">Client-Server Architecture:</span><br>
-                • Client: Requests information/tools<br>
-                • Server: Provides specific capabilities<br>
-                • Protocol: Standardized communication
+                • Client requests tools/data from server<br>
+                • Server provides specific capabilities<br>
+                • Standard protocol for communication
             </div>
         </div>
         
-        <!-- Slide 3: Blade MCP Architecture -->
+        <!-- Slide 2: Figma URL Input -->
         <div class="slide">
-            <h2>Blade MCP Architecture</h2>
-            <div class="flow-diagram">
-                <div class="process-box">
-                    <h4>🖥️ Cursor IDE</h4>
-                    <p>Developer Interface</p>
+            <h2>Step 1: Figma URL Processing</h2>
+            <div class="figma-visual">
+                <h3>🎨 Figma Design Link</h3>
+                <div class="code-block">
+                    https://www.figma.com/file/<span class="highlight">fileKey</span>/Design?node-id=<span class="highlight">3-4</span>
                 </div>
-                <div class="arrow">↔</div>
-                <div class="process-box">
-                    <h4>🔧 Blade MCP Server</h4>
-                    <p>Protocol Handler</p>
-                </div>
-                <div class="arrow">↔</div>
-                <div class="process-box">
-                    <h4>🧠 Blade AI Server</h4>
-                    <p>Processing Engine</p>
-                </div>
-            </div>
-            <div class="architecture-grid">
-                <div class="component-card">
-                    <h4>Cursor IDE Responsibilities</h4>
-                    <ul style="text-align: left;">
-                        <li>Accept developer input</li>
-                        <li>Make MCP tool calls</li>
-                        <li>Process returned data</li>
-                        <li>Generate final code</li>
-                    </ul>
-                </div>
-                <div class="component-card">
-                    <h4>Blade MCP Server Responsibilities</h4>
-                    <ul style="text-align: left;">
-                        <li>Handle MCP protocol</li>
-                        <li>Route requests to AI server</li>
-                        <li>Manage tool definitions</li>
-                        <li>Format responses</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slide 4: MCP Tools Overview -->
-        <div class="slide">
-            <h2>Blade MCP Tools</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <h4>🔍 get_blade_component_docs</h4>
-                    <p><strong>Purpose:</strong> Retrieve component documentation</p>
-                    <p><strong>Input:</strong> Array of component names</p>
-                    <p><strong>Output:</strong> Detailed component docs</p>
-                </div>
-                <div class="tool-card">
-                    <h4>🎨 get_figma_to_code</h4>
-                    <p><strong>Purpose:</strong> Convert Figma designs to code</p>
-                    <p><strong>Input:</strong> Figma file key + node ID</p>
-                    <p><strong>Output:</strong> React code with Blade components</p>
-                </div>
-                <div class="tool-card">
-                    <h4>🚀 hi_blade</h4>
-                    <p><strong>Purpose:</strong> Initialize Blade setup</p>
-                    <p><strong>Input:</strong> Project requirements</p>
-                    <p><strong>Output:</strong> Setup instructions</p>
-                </div>
-                <div class="tool-card">
-                    <h4>📝 create_blade_cursor_rules</h4>
-                    <p><strong>Purpose:</strong> Generate Cursor configuration</p>
-                    <p><strong>Input:</strong> Project context</p>
-                    <p><strong>Output:</strong> Cursor rules file</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slide 5: Tool 1 - Component Docs -->
-        <div class="slide">
-            <h2>Tool 1: get_blade_component_docs</h2>
-            <div class="code-block">
-                <span class="highlight">Function Call:</span><br>
-                get_blade_component_docs(["button", "text", "input"])
             </div>
             <div class="vertical-flow">
                 <div class="process-box">
-                    <h4>📥 Input Processing</h4>
-                    <p>Component names array</p>
+                    <div class="step-number">1</div>
+                    <h4>Developer pastes Figma URL</h4>
+                    <p>In Cursor IDE: "Build with [Figma Link]"</p>
                 </div>
                 <div class="arrow">↓</div>
                 <div class="process-box">
-                    <h4>📚 Documentation Retrieval</h4>
-                    <p>Fetch docs from Blade repository</p>
+                    <div class="step-number">2</div>
+                    <h4>Cursor extracts parameters</h4>
+                    <p>File Key: "kkjsf1"</p>
+                    <p>Node ID: "3-4"</p>
                 </div>
                 <div class="arrow">↓</div>
                 <div class="process-box">
-                    <h4>📤 Formatted Output</h4>
-                    <p>Props, examples, usage patterns</p>
+                    <div class="step-number">3</div>
+                    <h4>MCP Tool Call</h4>
+                    <p>get_figma_to_code(fileKey, nodeId)</p>
                 </div>
-            </div>
-            <div class="code-block">
-                <span class="highlight">Example Output:</span><br>
-                {<br>
-                &nbsp;&nbsp;<span class="json-key">"button"</span>: {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"props"</span>: {<span class="json-key">"disabled"</span>: <span class="json-string">"boolean"</span>},<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"usage"</span>: <span class="json-string">"&lt;Button disabled={true}&gt;"</span><br>
-                &nbsp;&nbsp;}<br>
-                }
             </div>
         </div>
         
-        <!-- Slide 6: Tool 2 - Figma to Code -->
+        <!-- Slide 3: Context Collection -->
         <div class="slide">
-            <h2>Tool 2: get_figma_to_code</h2>
-            <div class="code-block">
-                <span class="highlight">Function Call:</span><br>
-                get_figma_to_code(fileKey: "kkjsf1", nodeId: "3-4")
+            <h2>Step 2: Context Collection from Figma</h2>
+            <div class="context-grid">
+                <div class="context-card">
+                    <div class="step-number">1</div>
+                    <h4>📸 Screenshot</h4>
+                    <p>PNG image of the design</p>
+                    <p>Visual representation for AI</p>
+                </div>
+                <div class="context-card">
+                    <div class="step-number">2</div>
+                    <h4>🔗 JSON Structure</h4>
+                    <p>Figma's internal design data</p>
+                    <p>Components, properties, hierarchy</p>
+                </div>
+                <div class="context-card">
+                    <div class="step-number">3</div>
+                    <h4>📋 Component List</h4>
+                    <p>Extract all used components</p>
+                    <p>button, text, input, etc.</p>
+                </div>
+                <div class="context-card">
+                    <div class="step-number">4</div>
+                    <h4>📚 Component Docs</h4>
+                    <p>Documentation for each component</p>
+                    <p>Props, usage, examples</p>
+                </div>
             </div>
             <div class="flow-diagram">
-                <div class="process-box">
-                    <h4>🔗 URL Parsing</h4>
-                    <p>Extract file key & node ID</p>
+                <div class="process-box">🎨 Figma API</div>
+                <div class="arrow">→</div>
+                <div class="process-box">🧠 Context Store</div>
+                <div class="arrow">→</div>
+                <div class="process-box">🤖 AI Processing</div>
+            </div>
+        </div>
+        
+        <!-- Slide 4: JSON Transformation -->
+        <div class="slide">
+            <h2>Step 3: JSON Transformation</h2>
+            <div class="visual-container">
+                <div class="process-box" style="width: 40%;">
+                    <h4>📄 Raw Figma JSON</h4>
+                    <div class="json-display">
+                        {<br>
+                        &nbsp;&nbsp;<span class="json-key">"type"</span>: <span class="json-string">"INSTANCE"</span>,<br>
+                        &nbsp;&nbsp;<span class="json-key">"componentId"</span>: <span class="json-string">"I123:456"</span>,<br>
+                        &nbsp;&nbsp;<span class="json-key">"fills"</span>: [...],<br>
+                        &nbsp;&nbsp;<span class="json-key">"strokes"</span>: [...],<br>
+                        &nbsp;&nbsp;...complex structure<br>
+                        }
+                    </div>
                 </div>
                 <div class="arrow">→</div>
-                <div class="process-box">
-                    <h4>🧠 AI Processing</h4>
-                    <p>Blade AI Server</p>
-                </div>
-                <div class="arrow">→</div>
-                <div class="process-box">
-                    <h4>⚛️ Code Generation</h4>
-                    <p>React + Blade components</p>
+                <div class="process-box" style="width: 40%;">
+                    <h4>🔄 Transformed JSON</h4>
+                    <div class="json-display">
+                        {<br>
+                        &nbsp;&nbsp;<span class="json-key">"component"</span>: <span class="json-string">"TextInput"</span>,<br>
+                        &nbsp;&nbsp;<span class="json-key">"props"</span>: {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"placeholder"</span>: <span class="json-string">"Enter email"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"prefix"</span>: <span class="json-string">"@"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"value"</span>: <span class="json-string">""</span><br>
+                        &nbsp;&nbsp;}<br>
+                        }
+                    </div>
                 </div>
             </div>
             <div class="protocol-box">
-                <h4>MCP Server → AI Server Communication</h4>
-                <div class="code-block">
-                    POST /figma-to-code<br>
-                    {<br>
-                    &nbsp;&nbsp;<span class="json-key">"fileKey"</span>: <span class="json-string">"kkjsf1"</span>,<br>
-                    &nbsp;&nbsp;<span class="json-key">"nodeId"</span>: <span class="json-string">"3-4"</span><br>
-                    }
-                </div>
+                <h4>🔧 Transformation Process</h4>
+                <ul style="text-align: left;">
+                    <li>Parse complex Figma structure</li>
+                    <li>Map to Blade component names</li>
+                    <li>Extract component properties</li>
+                    <li>Create AI-friendly format</li>
+                </ul>
             </div>
         </div>
         
-        <!-- Slide 7: Context Collection Process -->
+        <!-- Slide 5: AI Processing -->
         <div class="slide">
-            <h2>Context Collection Process</h2>
-            <div class="context-steps">
-                <h4>📊 Five-Step Context Collection</h4>
-                <ol>
-                    <li><strong>Design Screenshot:</strong> PNG image from Figma API</li>
-                    <li><strong>JSON Representation:</strong> Figma's internal design structure</li>
-                    <li><strong>Component Extraction:</strong> Identify all used components</li>
-                    <li><strong>Documentation Fetching:</strong> Get docs for identified components</li>
-                    <li><strong>AI Description:</strong> LLM describes UI layout and hierarchy</li>
-                </ol>
+            <h2>Step 4: AI Code Generation</h2>
+            <div class="ai-visual">
+                <h3>🤖 System Prompt Construction</h3>
+                <div class="code-block">
+                    <span class="highlight">Task:</span> Generate React + TypeScript + Blade code<br>
+                    <span class="highlight">Guidelines:</span> Component usage, prop mapping, layouts<br>
+                    <span class="highlight">Context:</span> Screenshot + JSON + Component docs
+                </div>
+            </div>
+            <div class="vertical-flow">
+                <div class="process-box">
+                    <h4>📋 System Prompt</h4>
+                    <p>Structured instructions for AI</p>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="process-box">
+                    <h4>🧠 OpenAI API Call</h4>
+                    <p>Process all collected context</p>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="process-box">
+                    <h4>⚛️ React Code Output</h4>
+                    <p>Using Blade components</p>
+                </div>
             </div>
             <div class="flow-diagram">
+                <div class="process-box">🎨 Design Context</div>
+                <div class="arrow">→</div>
+                <div class="process-box">🤖 AI Processing</div>
+                <div class="arrow">→</div>
+                <div class="process-box">💻 Generated Code</div>
+            </div>
+        </div>
+        
+        <!-- Slide 6: Complete Flow -->
+        <div class="slide">
+            <h2>Complete Figma to Code Flow</h2>
+            <div class="vertical-flow">
                 <div class="process-box">
+                    <div class="step-number">1</div>
+                    <h4>🔗 Figma URL</h4>
+                    <p>Extract fileKey + nodeId</p>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="process-box">
+                    <div class="step-number">2</div>
+                    <h4>🧠 Blade AI Server</h4>
+                    <p>Collect design context</p>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="process-box">
+                    <div class="step-number">3</div>
                     <h4>🎨 Figma API</h4>
-                    <p>Design Data</p>
+                    <p>Screenshot + JSON + Components</p>
                 </div>
-                <div class="arrow">→</div>
+                <div class="arrow">↓</div>
                 <div class="process-box">
-                    <h4>🧠 Context Store</h4>
-                    <p>Structured Data</p>
-                </div>
-                <div class="arrow">→</div>
-                <div class="process-box">
+                    <div class="step-number">4</div>
                     <h4>🤖 AI Processing</h4>
-                    <p>Code Generation</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slide 8: AI Processing Pipeline -->
-        <div class="slide">
-            <h2>AI Processing Pipeline</h2>
-            <div class="vertical-flow">
-                <div class="process-box">
-                    <h4>📋 System Prompt Construction</h4>
-                    <p>Task + Guidelines + Context</p>
+                    <p>Generate React + Blade code</p>
                 </div>
                 <div class="arrow">↓</div>
                 <div class="process-box">
-                    <h4>🎯 Task Definition</h4>
-                    <p>Generate React + TypeScript + Blade code</p>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="process-box">
-                    <h4>📖 Guidelines Application</h4>
-                    <p>Component usage, prop mapping, layout rules</p>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="process-box">
-                    <h4>🔄 Context Integration</h4>
-                    <p>Design screenshot, JSON, component docs</p>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="process-box">
-                    <h4>🤖 OpenAI API Call</h4>
-                    <p>Generate final code output</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slide 9: Complete MCP Workflow -->
-        <div class="slide">
-            <h2>Complete MCP Workflow</h2>
-            <div class="vertical-flow">
-                <div class="process-box">
-                    <h4>1️⃣ Developer Input</h4>
-                    <p>Figma URL in Cursor IDE</p>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="process-box">
-                    <h4>2️⃣ MCP Tool Call</h4>
-                    <p>get_figma_to_code(fileKey, nodeId)</p>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="process-box">
-                    <h4>3️⃣ Server Processing</h4>
-                    <p>Blade MCP → Blade AI Server</p>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="process-box">
-                    <h4>4️⃣ Context Collection</h4>
-                    <p>Figma API + Component Docs</p>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="process-box">
-                    <h4>5️⃣ AI Generation</h4>
-                    <p>OpenAI processes context → React code</p>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="process-box">
-                    <h4>6️⃣ Code Integration</h4>
-                    <p>Cursor places code in project files</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slide 10: MCP Implementation Details -->
-        <div class="slide">
-            <h2>MCP Implementation Details</h2>
-            <div class="architecture-grid">
-                <div class="component-card">
-                    <h4>🔧 Protocol Standards</h4>
-                    <ul style="text-align: left;">
-                        <li>JSON-RPC 2.0 based</li>
-                        <li>WebSocket/HTTP transport</li>
-                        <li>Tool discovery mechanism</li>
-                        <li>Error handling protocols</li>
-                    </ul>
-                </div>
-                <div class="component-card">
-                    <h4>🛠️ Tool Registration</h4>
-                    <ul style="text-align: left;">
-                        <li>Tool manifest definition</li>
-                        <li>Input/output schemas</li>
-                        <li>Authentication handling</li>
-                        <li>Rate limiting controls</li>
-                    </ul>
-                </div>
-                <div class="component-card">
-                    <h4>📊 Data Flow</h4>
-                    <ul style="text-align: left;">
-                        <li>Request validation</li>
-                        <li>Context serialization</li>
-                        <li>Response formatting</li>
-                        <li>Error propagation</li>
-                    </ul>
-                </div>
-                <div class="component-card">
-                    <h4>🔒 Security & Performance</h4>
-                    <ul style="text-align: left;">
-                        <li>Token-based authentication</li>
-                        <li>Request rate limiting</li>
-                        <li>Response caching</li>
-                        <li>Connection pooling</li>
-                    </ul>
+                    <div class="step-number">5</div>
+                    <h4>💻 Code Output</h4>
+                    <p>Pixel-perfect UI matching design</p>
                 </div>
             </div>
             <div class="code-block">
-                <span class="highlight">Open Source:</span> All MCP tools available in Blade repository<br>
-                <span class="highlight">Extensible:</span> Custom tools can be added to the MCP server<br>
-                <span class="highlight">Scalable:</span> Multiple MCP servers can be connected simultaneously
+                <span class="highlight">Result:</span> From Figma design to production-ready React code in seconds
             </div>
         </div>
         
